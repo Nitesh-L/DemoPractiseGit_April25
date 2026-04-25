@@ -1,5 +1,9 @@
 package Utilities;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,5 +17,10 @@ public class FileReader
         prop.load(file);
         return prop.getProperty(s);
 
+    }
+    public String JsonReader(String s) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        JSONObject json = (JSONObject) jsonParser.parse(new java.io.FileReader("src/test/resources/SampleTestData1.json"));
+        return json.get(s).toString();
     }
 }
